@@ -73,7 +73,7 @@ jobs:
     - name: Upload artifact for deployment
       uses: actions/upload-artifact@v4
       with:
-        name: laravel-app
+        name: kelompok-9-2d
         path: |
           .
           !.github/
@@ -92,7 +92,7 @@ jobs:
     - name: Download artifact
       uses: actions/download-artifact@v4
       with:
-        name: laravel-app
+        name: kelompok-9-2d
         path: ./deploy
 
     - name: Install SSH key
@@ -115,7 +115,7 @@ jobs:
           cd ~/laravel-temp-deploy
 
           # Backup existing deployment (optional)
-          # tar -czf /backup/laravel-backup-$(date +"%Y%m%d%H%M%S").tar.gz /var/www/laravel-app
+          # tar -czf /backup/laravel-backup-$(date +"%Y%m%d%H%M%S").tar.gz /var/www/kelompok-9-2d
 
           # Copy files to production directory
           sudo rsync -avz --delete \
@@ -126,12 +126,12 @@ jobs:
             ~/laravel-temp-deploy/ /var/www/kelompok-9-2d/
 
           # Set permissions
-          sudo chown -R www-data:www-data /var/www/laravel-app
+          sudo chown -R www-data:www-data /var/www/kelompok-9-2d
           sudo chmod -R 755 /var/www/kelompok-9-2d/storage
           sudo chmod -R 755 /var/www/kelompok-9-2d/bootstrap/cache
 
           # Run deployment commands
-          cd /var/www/laravel-app
+          cd /var/www/kelompok-9-2d
           sudo -u www-data composer install --optimize-autoloader --no-dev
           sudo -u www-data php artisan config:cache
           sudo -u www-data php artisan route:cache
